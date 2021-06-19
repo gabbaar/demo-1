@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>Id:</td>
+			<td><input type='text' name='id' value='' id="id"></td>
+		</tr>
+		<tr>
+			<td><input name="submit" type="submit" value="For Post"
+				onclick="getPostById();" /></td>
+		</tr>
+		<tr>
+			<td><input name="submit" type="submit" value="For Comments"
+				onclick="getCommentsById();" /></td>
+		</tr>
+
+	</table>
+	<span></span>
+</body>
+
+<script type="text/javascript">
+ function getCommentsById(){
+ var id =  document.getElementById("id").value;
+    if(id==0 || id == null){
+ 	alert("Please Enter Valid Id");
+ }else{
+      $.ajax({
+       type : "GET",
+       contentType : "application/json",
+       url : "/api/comments/"+id,
+       dataType : 'json',
+       cache : false,
+       timeout : 600000,
+       success : function(data) {
+       $('span').empty();
+            $.each(data, function(index, element) {
+            	 $.each(element, function(index, ele) {
+		            $('span').append($('<div>', {
+		                text: ele}))
+            })});
+        
+       },
+       error : function(e) {
+        alert("Data Not Found");
+       }
+      });}
+   }
+ 
+ 
+ function getPostById(){
+ var id =  document.getElementById("id").value;
+ if(id==0 || id == null){
+ 	alert("Please Enter Valid Id");
+ }else{
+      $.ajax({
+       type : "GET",
+       contentType : "application/json",
+       url : "/api/post/"+id,
+       dataType : 'json',
+       cache : false,
+       timeout : 600000,
+       success : function(data) {
+       $('span').empty();
+            $.each(data, function(index, element) {
+            $('span').append($('<div>', {
+                text: element
+            }));
+        });
+       },
+       error : function(e) {
+        alert("Data Not Found");
+       }
+      });}
+   }
+  </script>
+</html>
