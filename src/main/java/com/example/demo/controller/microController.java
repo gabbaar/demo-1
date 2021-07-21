@@ -19,23 +19,23 @@ import com.example.demo.service.Services;
 @RequestMapping("/api")
 public class microController {
 
-	@Autowired
-	private Services services;
+	// @Autowired
+	// private Services services;
 
-	@GetMapping("/post/{id}")
-	public ResponseEntity<?> getPost(@PathVariable Integer id) throws Exception {
-		Posts result = services.getPostForId(id);
-		if (result == null)
-			return (ResponseEntity<?>) ResponseEntity.noContent();
-		return ResponseEntity.ok(result);
-	}
+	// @GetMapping("/post/{id}")
+	// public ResponseEntity<?> getPost(@PathVariable Integer id) throws Exception {
+	// 	Posts result = services.getPostForId(id);
+	// 	if (result == null)
+	// 		return (ResponseEntity<?>) ResponseEntity.noContent();
+	// 	return ResponseEntity.ok(result);
+	// }
 
-	@GetMapping("/comments/{id}")
-	public ResponseEntity<?> getComments(@PathVariable Integer id) throws Exception {
-		List<Comments> result = services.getCommentsForId(id);
-		if (result == null)
-			return (ResponseEntity<?>) ResponseEntity.noContent();
-		return ResponseEntity.ok(result);
-	}
+	// @GetMapping("/comments/{id}")
+	// public ResponseEntity<?> getComments(@PathVariable Integer id) throws Exception {
+	// 	List<Comments> result = services.getCommentsForId(id);
+	// 	if (result == null)
+	// 		return (ResponseEntity<?>) ResponseEntity.noContent();
+	// 	return ResponseEntity.ok(result);
+	// }
 
 }
